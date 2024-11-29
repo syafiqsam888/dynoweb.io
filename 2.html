@@ -51,7 +51,7 @@
   <script>
 
 
-const manifestUri = "https://linearjitp02-playback.astro.com.my/dash-wv/linear/5027/default_primary.mpd";
+const manifestUri = "https://cdnatv.mirack.tv/Atv/index.m3u8|referer=https://awesometv.my";
 async function init() {
 const video = document.getElementById('video');
 const ui = video['ui'];
@@ -61,7 +61,7 @@ window.player = player;
 window.ui = ui;
 player.setTextTrackVisibility(true);
 player.configure({
-drm: {"clearKeys": {'4f885481fe053e544096532c1dcb9710':'24a9b17859862887f28f63c7c29bcaa5'},
+drm: {"clearKeys": {'':''},
 },
   
 abr: {
