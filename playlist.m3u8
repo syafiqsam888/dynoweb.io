@@ -1,4 +1,5 @@
-#EXTM3U url-tvg="https://azimabid00.github.io/epg/astro_epg.xml, https://azimabid00.github.io/epg/unifi_epg.xml" refresh="3600"
+#EXTM3U url-tvg="https://azimabid00.github.io/epg/astro_epg.xml, https://azimabid00.github.io/epg/unifi_epg.xml,
+https://aqfadtv.xyz/epg" refresh="3600"
 
 #EXTINF:-1  tvg-id="101.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/TV1_v1.png", TV1
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -35,12 +36,12 @@ https://unifi-live27.secureswiftcontent.com/UnifiHD/live09.mpd
 #KODIPROP:inputstream.adaptive.license_key=41a42fb5af457501c11bb9b158d5a110:57a8d6f9e3832887db18ea6071118736
 https://linearjitp-playback.astro.com.my/dash-wv/linear/1113/default_primary.mpd
 
-#EXTINF:-1  tvg-id="146.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/Okey_v1.png", OKEY
+#EXTINF:-1  tvg-id="8.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/Okey_v1.png", OKEY
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60f202b16407fedd8e369c32af57dd10:c8475231c09dc1b639886976b6fc7575
 https://linearjitp02-playback.astro.com.my/dash-wv/linear/5072/default_primary.mpd
 
-#EXTINF:-1  tvg-id="118.unifi" tvg-logo="https://playtv.unifi.com.my:7047/CPS/images/universal/film/logo/202209/20220901/20220901155542159l9k.png", INSPIRASI
+#EXTINF:-1  tvg-id="9.astro" tvg-logo="https://playtv.unifi.com.my:7047/CPS/images/universal/film/logo/202209/20220901/20220901155542159l9k.png", INSPIRASI
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=1900d0fd8dfd2357ca2685c66628bf07:9c105cc68caa9cf65315e06ef50860ab
 https://unifi-live27.secureswiftcontent.com/UnifiHD/live29.mpd
