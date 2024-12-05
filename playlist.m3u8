@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://azimabid00.github.io/epg/astro_epg.xml, https://aqfadtv.xyz/epg" refresh="3600"
+#EXTM3U url-tvg="https://azimabid00.github.io/epg/astro_epg.xml, https://azimabid00.github.io/epg/unifi_epg.xml" refresh="3600"
 
 #EXTINF:-1  tvg-id="101.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/TV1_v1.png", TV1
 #KODIPROP:inputstream.adaptive.license_type=clearkey
