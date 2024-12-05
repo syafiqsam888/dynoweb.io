@@ -25,12 +25,12 @@ https://d25tgymtnqzu8s.cloudfront.net/smil:tv6/playlist.m3u8?id=1
 #KODIPROP:inputstream.adaptive.license_key=a9c619074ed38c20e25ad36c3c57c10c:056e1e49573d2caee5cb4fe78f8c4f3d
 https://unifi-live27.secureswiftcontent.com/UnifiHD/live08.mpd
 
-#EXTINF:-1  tvg-id="149.astro" tvg-logo="https://poster.starhubgo.com/Linear_channels2/422_1920x1080_HTV.png?w=272", TV9
+#EXTINF:-1  tvg-id="149.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/TV9_NEW.png", TV9
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=1dfa8a645af41e83c520bddf913934ca:65f6af8750d24b230d91b984237ac1e4
 https://unifi-live27.secureswiftcontent.com/UnifiHD/live09.mpd
 
-#EXTINF:-1  tvg-id="114.astro" tvg-logo="https://poster.starhubgo.com/Linear_channels2/432_1920x1080_HTV.png?w=272", AL-HIJRAH
+#EXTINF:-1  tvg-id="114.astro" tvg-logo="https://linear-poster.astro.com.my/prod/logo/Al-Hijrah_v1.png", AL-HIJRAH
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=41a42fb5af457501c11bb9b158d5a110:57a8d6f9e3832887db18ea6071118736
 https://linearjitp-playback.astro.com.my/dash-wv/linear/1113/default_primary.mpd
