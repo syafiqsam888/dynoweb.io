@@ -1,3 +1,5 @@
+
+#EXTM3U 
 #EXTM3U x-tvg-url="https://azimabid00.github.io/epg/astro_epg.xml,https://azimabid00.github.io/epg/unifi_epg.xml,https://aqfadtv.xyz/epg,https://raw.githubusercontent.com/AqFad2811/epg/main/indonesia.xml,https://www.bevy.be/bevyfiles/indonesiapremium1.xml.gz,https://www.bevy.be/bevyfiles/indonesiapremium2.xml.gz,https://www.bevy.be/bevyfiles/indonesiapremium3.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/all.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/Plex/all.xml,https://raw.githubusercontent.com/mitthu786/tvepg/main/tataplay/epg.xml.gz" refresh="1440" max-conn="1" refresh="24"
 
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -967,4 +969,3 @@ https://fixcem.vercel.app/api/raw/?path=/Mechamato.Movie.2022.720p.AOD.WEB-DL.AA
 
 #EXTINF:-1 type="movie" tvg-logo="https://image.tmdb.org/t/p/w600_and_h900_bestv2/4V23FNRDjMZ0PwQJWjeHCbTtEro.jpg" group-title="Malay",Satu Hari Sebelum Raya
 https://vod3.fixtv.xyz/api/raw/?path=/malay/Satu.Hari.Sebelum.Raya.2023.720p.AOD.WEB-DL.AAC2.0.H.264-ABE.mkv
-
