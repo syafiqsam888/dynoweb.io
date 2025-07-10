@@ -1,0 +1,22 @@
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if any JS tooling is added later)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Environment files with tokens
+.env
+config.local.js

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload by Link - Tests</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { padding: 10px; margin: 5px 0; border-radius: 5px; }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Upload by Link - Function Tests</h1>
+    <div id="test-results"></div>
+
+    <script>
+        // Copy the core functions from upload.html for testing
+        
+        // Improved URL validation using URL constructor
+        function validateUrl(urlString) {
+            try {
+                const url = new URL(urlString.trim());
+                // Check if protocol is http or https
+                if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+                    return { valid: false, error: 'URL must use HTTP or HTTPS protocol' };
+                }
+                // Check if hostname exists
+                if (!url.hostname) {
+                    return { valid: false, error: 'URL must have a valid hostname' };
+                }
+                return { valid: true, url: url };
+            } catch (error) {
+                return { valid: false, error: 'Invalid URL format' };
+            }
+        }
+        
+        // Robust filename extraction function
+        function extractFilename(url) {
+            try {
+                console.log('Extracting filename from URL', url.toString());
+                
+                // Get pathname without query parameters
+                let pathname = url.pathname;
+                
+                // Decode URL-encoded characters
+                pathname = decodeURIComponent(pathname);
+                
+                // Extract filename from path
+                let filename = pathname.split('/').pop();
+                
+                // If no filename or just a path separator, try to generate one
+                if (!filename || filename === '') {
+                    // Use hostname and timestamp as fallback
+                    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                    filename = `${url.hostname}-${timestamp}`;
+                }
+                
+                // If filename has no extension, try to determine from URL or use .bin
+                if (!filename.includes('.')) {
+                    // Check if URL suggests a file type
+                    const urlStr = url.toString().toLowerCase();
+                    if (urlStr.includes('mp4') || urlStr.includes('video')) {
+                        filename += '.mp4';
+                    } else if (urlStr.includes('pdf') || urlStr.includes('document')) {
+                        filename += '.pdf';
+                    } else if (urlStr.includes('jpg') || urlStr.includes('jpeg') || urlStr.includes('image')) {
+                        filename += '.jpg';
+                    } else if (urlStr.includes('png')) {
+                        filename += '.png';
+                    } else {
+                        filename += '.bin'; // Generic binary file
+                    }
+                }
+                
+                // Clean filename of invalid characters
+                filename = filename.replace(/[<>:"/\\|?*]/g, '_');
+                
+                // Ensure filename isn't too long
+                if (filename.length > 255) {
+                    const extension = filename.substring(filename.lastIndexOf('.'));
+                    filename = filename.substring(0, 255 - extension.length) + extension;
+                }
+                
+                console.log('Extracted filename', filename);
+                return filename;
+            } catch (error) {
+                console.log('Error extracting filename', error);
+                // Fallback filename
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                return `download-${timestamp}.bin`;
+            }
+        }
+        
+        // Test runner
+        function runTest(name, testFunction) {
+            try {
+                const result = testFunction();
+                if (result) {
+                    addTestResult(name, true, 'PASS');
+                } else {
+                    addTestResult(name, false, 'FAIL - Test returned false');
+                }
+            } catch (error) {
+                addTestResult(name, false, `FAIL - ${error.message}`);
+            }
+        }
+        
+        function addTestResult(name, passed, message) {
+            const container = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = `test-result ${passed ? 'pass' : 'fail'}`;
+            div.innerHTML = `<strong>${name}:</strong> ${message}`;
+            container.appendChild(div);
+        }
+        
+        // Test cases
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Running tests...');
+            
+            // URL Validation Tests
+            runTest('Valid HTTPS URL', () => {
+                const result = validateUrl('https://example.com/file.pdf');
+                return result.valid === true;
+            });
+            
+            runTest('Valid HTTP URL', () => {
+                const result = validateUrl('http://example.com/file.pdf');
+                return result.valid === true;
+            });
+            
+            runTest('Invalid URL - no protocol', () => {
+                const result = validateUrl('example.com/file.pdf');
+                return result.valid === false;
+            });
+            
+            runTest('Invalid URL - wrong protocol', () => {
+                const result = validateUrl('ftp://example.com/file.pdf');
+                return result.valid === false;
+            });
+            
+            runTest('Complex URL with query params', () => {
+                const result = validateUrl('https://tj.tbnbotsnetwork.workers.dev/125617/Extras_for_Chasing_the_Dragon_2025_CHINESE_1080p_WEB_MalaySub.mp4?hash=AgADNx');
+                return result.valid === true;
+            });
+            
+            // Filename Extraction Tests
+            runTest('Simple filename extraction', () => {
+                const url = new URL('https://example.com/files/document.pdf');
+                const filename = extractFilename(url);
+                return filename === 'document.pdf';
+            });
+            
+            runTest('Filename with query params', () => {
+                const url = new URL('https://tj.tbnbotsnetwork.workers.dev/125617/Extras_for_Chasing_the_Dragon_2025_CHINESE_1080p_WEB_MalaySub.mp4?hash=AgADNx');
+                const filename = extractFilename(url);
+                return filename === 'Extras_for_Chasing_the_Dragon_2025_CHINESE_1080p_WEB_MalaySub.mp4';
+            });
+            
+            runTest('URL-encoded filename', () => {
+                const url = new URL('https://cdn.example.com/media/video%20file.mp4');
+                const filename = extractFilename(url);
+                return filename === 'video file.mp4';
+            });
+            
+            runTest('No filename with extension inference', () => {
+                const url = new URL('https://example.com/video');
+                const filename = extractFilename(url);
+                return filename === 'video.mp4'; // Should infer mp4 from URL containing 'video'
+            });
+            
+            runTest('No filename, no extension', () => {
+                const url = new URL('https://example.com/');
+                const filename = extractFilename(url);
+                return filename.includes('example.com') && filename.length > 0;
+            });
+            
+            runTest('Invalid characters in filename', () => {
+                const url = new URL('https://example.com/file<name>.pdf');
+                const filename = extractFilename(url);
+                return filename === 'file_name_.pdf'; // < should be replaced with _
+            });
+            
+            console.log('Tests completed!');
+        });
+    </script>
+</body>
+</html>
